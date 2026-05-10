@@ -3,15 +3,21 @@ from sqlalchemy import create_engine
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
 
-# Override with DATABASE_URL if needed. Default matches docker-compose.yml.
+# Use SQLite for simplicity (works on HF Spaces)
+# Override with DATABASE_URL environment variable if needed
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+DEFAULT_DB_PATH = os.path.join(BASE_DIR, "epilepsy_app.db")
+
 SQLALCHEMY_DATABASE_URL = os.environ.get(
     "DATABASE_URL",
-    "postgresql://postgres:tower1234@localhost:5432/epilepsy_classifier_db",
+    f"sqlite:///{DEFAULT_DB_PATH}",
 )
 
-_engine_kwargs: dict = {"pool_pre_ping": True}
-if SQLALCHEMY_DATABASE_URL.startswith("postgresql"):
-    # Fail fast instead of hanging the login button when Postgres is down.
+_engine_kwargs: dict = {}
+if SQLALCHEMY_DATABASE_URL.startswith("sqlite"):
+    _engine_kwargs["connect_args"] = {"check_same_thread": False}
+elif SQLALCHEMY_DATABASE_URL.startswith("postgresql"):
+    _engine_kwargs["pool_pre_ping"] = True
     _engine_kwargs["connect_args"] = {"connect_timeout": 10}
 
 engine = create_engine(SQLALCHEMY_DATABASE_URL, **_engine_kwargs)

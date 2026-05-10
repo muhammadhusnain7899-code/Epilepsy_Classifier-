@@ -7,6 +7,7 @@
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "automatic",
     "splash": {
+      "image": "./assets/splash.png",
       "resizeMode": "contain",
       "backgroundColor": "#6366f1"
     },
@@ -19,24 +20,30 @@
     },
     "android": {
       "adaptiveIcon": {
+        "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#6366f1"
       },
       "package": "com.epilepsy.classifier",
       "usesCleartextTraffic": true,
       "permissions": [
-        "READ_EXTERNAL_STORAGE",
-        "WRITE_EXTERNAL_STORAGE"
+        "android.permission.READ_EXTERNAL_STORAGE",
+        "android.permission.WRITE_EXTERNAL_STORAGE",
+        "android.permission.CAMERA"
       ]
     },
     "web": {
       "favicon": "./assets/favicon.png",
       "bundler": "metro"
     },
+    "plugins": [
+      "expo-document-picker",
+      "expo-camera"
+    ],
+    "owner": "husnain7899h",
     "extra": {
       "eas": {
-        "projectId": "your-project-id"
+        "projectId": "7be2624f-e207-4557-a5b6-e45765ab6f28"
       }
-    },
-    "owner": "husnain7899h"
+    }
   }
 }

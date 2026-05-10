@@ -29,9 +29,10 @@ COPY . .
 RUN mkdir -p storage temp && chmod 777 storage temp
 
 # Set environment variables
-ENV KERAS_BACKEND=jax
+ENV KERAS_BACKEND=tensorflow
 ENV PYTHONUNBUFFERED=1
 ENV HF_HOME=/app/.cache
+ENV TF_CPP_MIN_LOG_LEVEL=2
 
 # Create cache directory for Hugging Face
 RUN mkdir -p /app/.cache && chmod 777 /app/.cache
