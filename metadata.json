@@ -1,0 +1,5 @@
+{
+  "name": "Epilepsy Classifier",
+  "description": "A professional medical tool for classifying epilepsy types based on EEG data using React Native and Expo.",
+  "requestFramePermissions": []
+}
