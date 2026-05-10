@@ -22,14 +22,21 @@
         "backgroundColor": "#6366f1"
       },
       "package": "com.epilepsy.classifier",
-      "usesCleartextTraffic": true
+      "usesCleartextTraffic": true,
+      "permissions": [
+        "READ_EXTERNAL_STORAGE",
+        "WRITE_EXTERNAL_STORAGE"
+      ]
     },
     "web": {
       "favicon": "./assets/favicon.png",
       "bundler": "metro"
     },
     "extra": {
-      "apiUrl": "http://10.218.115.141:8000"
-    }
+      "eas": {
+        "projectId": "your-project-id"
+      }
+    },
+    "owner": "muhammadhusnain7899"
   }
 }
